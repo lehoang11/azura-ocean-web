@@ -1,57 +1,22 @@
 import  API_URL  from "../constants/apiConstant";
-
+import API from "./API";
 export default  {
     login,
     logout,
     register
 };
 
-function login(email, password) {
-    const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password })
-    };
+function login(params) {
     let url = API_URL.USER_LOGIN_URL;
-    return fetch(url, requestOptions)
-        .then(handleResponse)
-        .then(res => {
-            return res;
-        });
+    return API.POST(url, params);
 }
 
 function logout(){
     localStorage.removeItem('user');
 }
 
-function register(user) {
-    const requestOptions = {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(user)
-    };
+function register(params) {
     let url = API_URL.USER_REGISTER_URL;
-    return fetch(url, requestOptions)
-            .then(handleResponse)
-            .then(res => {
-                return res;
-            });
+    return API.POST(url, params);
 }
 
-function handleResponse(response) {
-    return response.text().then(text => {
-        const data = text && JSON.parse(text);
-        if (!response.ok) {
-            if (response.status === 401) {
-                // auto logout if 401 response returned from api
-                logout();
-            //location.reload(true);
-            }
-
-            const error = (data && data.message) || response.statusText;
-            return Promise.reject(error);
-        }
-
-        return data;
-    });
-}

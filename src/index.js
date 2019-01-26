@@ -4,8 +4,6 @@ import { Provider } from 'react-redux';
 import store from "store/index.jsx";
 
 import "bootstrap/dist/css/bootstrap.css";
-import "assets/scss/paper-dashboard.scss";
-import "assets/demo/demo.css";
 
 import App from "./App";
 
