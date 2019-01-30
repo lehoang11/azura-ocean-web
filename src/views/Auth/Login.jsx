@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import userAction from '../../actions/userAction';
+import "../../assets/css/login.css"
+import "../../assets/css/fontawesome-all.css"
 
 class Login extends React.Component {
     constructor(props) {
@@ -71,23 +73,66 @@ class Login extends React.Component {
                 </form>
             </div>
             */
-        <div className="login-wrapper">
-            <div className="login">
-            <h1>Login to Azura Ocean</h1>
-                <form method="post" action="">
-                    <p><input type="text" name="login" value="" placeholder="Username or Email" /></p>
-                    <p><input type="password" name="password" value="" placeholder="Password" /></p>
-                    <p className="remember_me">
-                    <label>
-                        <input type="checkbox" name="remember_me" id="remember_me" />
-                        Remember me on this computer
-                    </label>
-                    </p>
-                    <p className="submit"><input type="submit" name="commit" value="Login" /></p>
+        <div>
+            <h1>
+                <span>L</span>ogIn
+                <span>T</span>o
+                <span>A</span>zura
+                <span>O</span>cean
+            </h1>
+
+            <div className="sub-main-w3">
+                <form name="form" onSubmit={this.handleSubmit} >
+                    <div className={'form-style-agile' + (submitted && !email ? ' has-error' : '')}>
+                        <label>
+                            Email
+                            <i className="fas fa-user"></i>
+                        </label>
+                        <input placeholder="Email or Username"  type="text" name="email" value={email} onChange={this.handleChange} />
+                        {submitted && !email &&
+                            <div className="help-block">Email is required</div>
+                        }
+                    </div>
+                    <div className={'form-style-agile' + (submitted && !password ? ' has-error' : '')}>
+                        <label>
+                            Password
+                            <i className="fas fa-unlock-alt"></i>
+                        </label>
+                        <input placeholder="Password" type="password" name="password" value={password} onChange={this.handleChange} />
+                        {submitted && !password &&
+                            <div className="help-block">Password is required</div>
+                        }
+                    </div>
+                    <div className="wthree-text">
+                        <ul>
+                            <li>
+                                <div className="checkout-w3l">
+                                    <div className="demo5">
+                                        <div className="switch demo3">
+                                            <input type="checkbox" />
+                                            <label>
+                                                <i></i>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <Link to ="#">Stay Signed In</Link>
+                                </div>
+
+                            </li>
+                            <li>
+                                <Link to ="#">Forgot Password?</Link>
+                            </li>
+                        </ul>
+                    </div>
+                    { loggingIn }
+                    <input type="submit" value="Log In" />
                 </form>
-        </div>
-            <div className="login-help">
-            <p>Forgot your password? <a href="#">Click here to reset it</a>.</p>
+            </div>
+
+            <div className="footer">
+                <p>&copy; 2019 Azura Ocean |
+                    <Link to ="#">Hi</Link>
+                </p>
             </div>
         </div>
         );
