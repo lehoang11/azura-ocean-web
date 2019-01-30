@@ -1,18 +1,24 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import Header from "../../components/Header/Header"
 
 
 class Home extends React.Component {
 
-
     render() {
         const { user } = this.props;
         return (
-            <div className="col-md-6 col-md-offset-3">
-            <h1>Hi {user.email}!</h1>
-                <p><Link to="/login">Logout</Link></p>
-            </div>
+        <div id="wrapper">
+            <Header />
+            <section className="container">
+                <div className="inner-body">
+                    <div className="row">
+                        <h1>Hi {user.email}!</h1> 
+                    </div>
+                </div>
+            </section>
+        </div>
+            
         );
     }
 }
