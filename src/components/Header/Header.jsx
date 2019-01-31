@@ -2,7 +2,6 @@ import React from "react";
 import { Link } from 'react-router-dom';
 import logo from "../../assets/img/varun.jpg";
 import { connect } from 'react-redux';
-
 class Header extends React.Component {
 
   
