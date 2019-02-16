@@ -7,40 +7,47 @@ class Header extends React.Component {
   
     render () {
         const { user } = this.props;
-        return (     
-        <nav className="top-nav">
-            <div className="app-logo">
-                <Link to="#" className="logo-text">azura</Link> 
-            </div>            
-            <div className="app-nav-search">
-                <form className="">
-                    <input type="text" name="q" className="app-input-search" placeholder="search" />
-                    <button type="submit" className="app-btn-search">
-                        <i className="fa fa-search"></i>
-                    </button>
-                </form>
-            </div>
+        return (
+        <div id="main-header">     
+            <nav className="top-nav">
+                <div class="sidebar-toggle-box">
+                    <div class="fa fa-bars"></div>
+                </div>
+                
+                <div className="app-logo">
+                    <Link to="#" className="logo-text">azura</Link> 
+                </div>            
+                <div className="app-nav-search">
+                    <form className="">
+                        <input type="text" name="q" className="app-input-search" placeholder="search" />
+                        <button type="submit" className="app-btn-search">
+                            <i className="fa fa-search"></i>
+                        </button>
+                    </form>
+                </div>
 
-            <div className="top-nav-right">
-                <div className="user-profile dropdown">
-                    <Link to="#" className="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                    <img src={logo} alt="" className="user-avatar-md rounded-circle" /> 
-                    </Link>
+                <div className="top-nav-right">
+                    <div className="user-profile dropdown">
+                        <Link to="#" className="nav-link nav-user-img" href="#" id="navbarDropdownMenuLink2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        <img src={logo} alt="" className="user-avatar-md rounded-circle" /> 
+                        </Link>
 
-                    <div className="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
-                    <div className="nav-user-info">
-                    <h5 className="mb-0 text-white nav-user-name">{user.lastName} </h5>
-                    </div>
-                    <Link to="#" className="dropdown-item">
-                    <i className="fa fa-cog mr-2"></i> Setting
-                    </Link>
-                    <Link to="/login" className="dropdown-item">
-                        <i className="fa fa-power-off mr-2"></i>Logout
-                    </Link>
+                        <div className="dropdown-menu dropdown-menu-right nav-user-dropdown" aria-labelledby="navbarDropdownMenuLink2">
+                        <div className="nav-user-info">
+                        <h5 className="mb-0 text-white nav-user-name">{user.lastName} </h5>
+                        </div>
+                        <Link to="#" className="dropdown-item">
+                        <i className="fa fa-cog mr-2"></i> Setting
+                        </Link>
+                        <Link to="/login" className="dropdown-item">
+                            <i className="fa fa-power-off mr-2"></i>Logout
+                        </Link>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </nav>
+            </nav>
+            <div id="e-spase-nav"></div>
+        </div>
     
         );
     }

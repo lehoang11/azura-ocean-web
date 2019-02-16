@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import alertAction from './actions/alertAction';
 import AppRouter from './routes';
 import history from './helpers/history';
+import { ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 class App extends React.Component {
     constructor(props) {
@@ -17,14 +19,12 @@ class App extends React.Component {
 
 
     render() {
-        const { alert } = this.props;
-        return (
+        //const { alert } = this.props;
+        return ( 
             <div>
-                <div>
-                    {alert.message &&
-                    <div className={`alert ${alert.type}`}>{alert.message}</div>}
-                </div>
                 <AppRouter />
+
+                <ToastContainer autoClose={5000} />
             </div>
             );
     }

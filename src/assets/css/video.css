@@ -1,0 +1,196 @@
+.row-item-video-container {
+    width: 100%;
+    margin: 0 ;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    display: block;
+    float: left; 
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 24px;
+}
+
+.row-item-video-container .header-section {
+    width: 100%;
+    margin-top: 24px;
+    float: left;
+}
+.header-section .title-text {
+    color:#0a0a0a;
+    height: 2rem;
+    -ms-flex-direction: row;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    font-size: 18px;
+    font-weight: 500;
+}
+.row-item-video-container .video-body-card {
+    width: 100%;
+    margin-top: 24px;
+    float: left;
+}
+.video-body-card-inner {
+    width: 100%;
+    position: relative;
+    display: block;
+}
+
+.video-item-thumbnail {
+    width: 210px;
+    padding-right: 4px;
+    display: inline-block;
+    vertical-align: top;
+    white-space: normal;
+    float: left;
+}
+.video-item-thumbnail .thumbnail-inner {
+    width: 100%;
+    height: 118px;
+    display: inline-block;
+    position: relative;
+}
+.thumbnail-inner .thumb-box {
+    position : absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+    display: block;
+
+}
+
+.thumbnail-inner .thumb-box img{
+    display: block;
+    position: absolute;
+    transform: translateY(-50%);
+    top: 50%;
+    left: 0;
+    width: 100%;
+}
+
+.thumbnail-inner .video-time-play {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 4px;
+    background-color: rgba(11, 11, 11, 0.8);
+    color: #ffffff;
+    padding: 2px 4px;
+    border-radius: 2px;
+    letter-spacing: .5px;
+    font-size: 1.2rem;
+    font-weight: 500;
+    line-height: 1.2rem;
+    -ms-flex-direction: row;
+    -webkit-flex-direction: row;
+    flex-direction: row;
+    -ms-flex-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    display: inline-flex;
+}
+.thumbnail-inner .video-time-play .time-play-status {
+    color: #ffffff;
+    letter-spacing: .5px;
+    font-size: 1.2rem;
+    font-weight: 500;
+    line-height: 1.2rem;
+}
+
+.video-details {
+    width: 100%;
+    float: left;
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    -ms-flex-direction: column;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+}
+
+.video-details {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+}
+
+.video-details .video-details-inner {
+    width: 100%;
+    float: left;
+    padding-right: 24px;
+}
+.video-details .video-details-inner h3.video-title {
+    width: 100%;
+    float: left;
+    margin: 5px 0 5px;
+    color:#0a0a0a;
+    display: block;
+    font-size: 1.17em;
+    /* margin-block-start: 1em;
+    margin-block-end: 1em; */
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+}
+.video-details .video-details-inner .video-title .title {
+    display: -webkit-box;
+    max-height: 3.2rem;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    -webkit-line-clamp: 2;
+    font-size: 1.6rem;
+    font-weight: 550;
+    line-height: 1.6rem;
+    color:#0a0a0a;
+    text-decoration: none;
+
+}
+.video-details .video-details-inner .video-auth {
+    width: 100%;
+    max-height: 28px;
+    float: left;
+    margin: 5px 0 5px;
+    display: block;
+}
+
+.video-details .video-details-inner .video-auth .video-auth-text {
+    text-decoration: none;
+    font-size: 1.6rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: block;
+    margin-right: -0.1em;
+    padding-right: 0.1em;
+    color: #606060;
+    line-height: 1.0;
+} 
+.video-details .video-details-inner .video-detail-meta {
+    width: 100%; 
+    display: block;
+    line-height: 1.8rem;
+     max-height: 3.6rem; 
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: #333;
+    float: left;
+
+}
+.video-details .video-details-inner .video-detail-meta .view-meta {
+    display: inline-block;
+    padding-right: 4px;
+
+}
+.video-details .video-details-inner .video-detail-meta .date-meta {
+    display: inline-block;
+}

@@ -2,12 +2,15 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Header from "../../components/Header/Header"
 import Aside from "../../components/MenuBar/Aside"
-import "../../assets/css/video.css"
 import { Link } from 'react-router-dom';
+import "../../assets/css/school.css"
+import "../../assets/css/video.css"
 import videoImageDocCoCauBai from "../../assets/img/doc-co-cau-bai.jpg";
+import bannerSchool from "../../assets/img/demo/banner-school.jpg";
+
 const itemListVideo = [0,1,2,3,4,5];
 
-class Home extends React.Component {
+class SchoolView extends React.Component {
 
     render() {
         const { user } = this.props;
@@ -15,10 +18,17 @@ class Home extends React.Component {
         <div id="wrapper">
             <Header />
             <Aside />
+            <div id ="banner-school">
+                <div className="banner-inner">
+                    <div className="thumb">
+                         <img className="i-banner-school" src={bannerSchool} />
+                    </div>
+                </div>
+            </div>
             <div id="content">
                 <section className="row-item-video-container">
                     <div className="header-section">
-                        <div className ="title-text"> Video Trực Tuyến
+                        <div className ="title-text"> Video Trực Tuyến School
                         </div>
                     </div>
                     <div className="video-body-card">
@@ -119,4 +129,4 @@ function mapStateToProps(state) {
     };
 }
 
-export default connect(mapStateToProps)(Home);
+export default connect(mapStateToProps)(SchoolView);
