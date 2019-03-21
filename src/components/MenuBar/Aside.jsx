@@ -13,13 +13,13 @@ class Aside extends React.Component {
                         <ul className="sidebar-menu" id="nav-accordion">
                             <li>
                                 <Link to="/">
-                                    <i class="fa fa-home"></i>
+                                    <i className="fa fa-home"></i>
                                     <span>Trang chủ</span>
                                 </Link>
                             </li>
                             <li>
                                 <Link to="/">
-                                    <i class="fa fa-history"></i>
+                                    <i className="fa fa-history"></i>
                                     <span>Lịch sử</span>
                                 </Link>
                             </li>

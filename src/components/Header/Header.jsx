@@ -10,8 +10,8 @@ class Header extends React.Component {
         return (
         <div id="main-header">     
             <nav className="top-nav">
-                <div class="sidebar-toggle-box">
-                    <div class="fa fa-bars"></div>
+                <div className="sidebar-toggle-box">
+                    <div className="fa fa-bars"></div>
                 </div>
                 
                 <div className="app-logo">
@@ -36,8 +36,11 @@ class Header extends React.Component {
                         <div className="nav-user-info">
                         <h5 className="mb-0 text-white nav-user-name">{user.lastName} </h5>
                         </div>
-                        <Link to="#" className="dropdown-item">
-                        <i className="fa fa-cog mr-2"></i> Setting
+                        <Link to="/edu/123" className="dropdown-item">
+                        <i className="fa fa-cog mr-2"></i> Edu của tôi
+                        </Link>
+                        <Link to="/account/profile" className="dropdown-item">
+                        <i className="fa fa-cog mr-2"></i> Cài đặt tài khoản
                         </Link>
                         <Link to="/login" className="dropdown-item">
                             <i className="fa fa-power-off mr-2"></i>Logout

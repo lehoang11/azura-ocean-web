@@ -19,17 +19,17 @@ class PageNotFound extends React.Component {
                     </div>
 
                     <div className="central-body">
-                        <img className="image-404" src={img404} width="300px" />
+                        <img className="image-404" src={img404} width="300px" alt="404"/>
                         <Link to="/" className="btn-go-home">GO BACK HOME</Link>
                     </div>
                     <div className="objects">
-                        <img className="object_rocket" src={imgRocket} width="40px" />
+                        <img className="object_rocket" src={imgRocket} width="40px" alt="imgRocket" />
                         <div className="earth-moon">
-                            <img className="object_earth" src={imgEarth} width="100px" />
-                            <img className="object_moon" src={imgMoon} width="80px" />
+                            <img className="object_earth" src={imgEarth} width="100px" alt="imgEarth" />
+                            <img className="object_moon" src={imgMoon} width="80px" alt="imgMoon" />
                         </div>
                         <div className="box_astronaut">
-                            <img className="object_astronaut" src={imgAstronaut} width="140px" />
+                            <img className="object_astronaut" src={imgAstronaut} width="140px" alt="imgAstronaut" />
                         </div>
                     </div>
                     <div className="glowing_stars">

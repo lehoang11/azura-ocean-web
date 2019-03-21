@@ -5,113 +5,61 @@ import Aside from "../../components/MenuBar/Aside"
 import { Link } from 'react-router-dom';
 import "../../assets/css/school.css"
 import "../../assets/css/video.css"
-import videoImageDocCoCauBai from "../../assets/img/doc-co-cau-bai.jpg";
 import bannerSchool from "../../assets/img/demo/banner-school.jpg";
+import usAvatar from "../../assets/img/varun.jpg";
+import { Route, Switch  } from 'react-router-dom';
+import About from "./About"
+import Setting from "./Setting"
+import Video from "./Video"
 
-const itemListVideo = [0,1,2,3,4,5];
 
 class SchoolView extends React.Component {
-
+    
     render() {
         const { user } = this.props;
+        let usId = this.props.match.params.id;
+        console.log (usId);
         return (
         <div id="wrapper">
             <Header />
             <Aside />
-            <div id ="banner-school">
-                <div className="banner-inner">
+            <div id ="us-school">
+                <div className="us-inner">
                     <div className="thumb">
-                         <img className="i-banner-school" src={bannerSchool} />
+                         <img className="i-us-school" src={bannerSchool} alt="banner" />
                     </div>
                 </div>
             </div>
-            <div id="content">
-                <section className="row-item-video-container">
-                    <div className="header-section">
-                        <div className ="title-text"> Video Trực Tuyến School
+            <div id="header-school-intro" className ="xycontainer-full">
+                <div className="inner-body">
+                    <div className="top-header-intro">
+                        <div className="avatar-us">
+                            <img src={usAvatar} alt="us avatar" />
                         </div>
+                        <div className="us-name">University Stofond </div>
+                        <div className ="flow-us">
+                            <button className ="btn-flow-us btn-danger"><span>Theo dõi</span></button>
+                        </div>
+                    
                     </div>
-                    <div className="video-body-card">
-                        <div className="video-body-card-inner">
-                        {
-                            itemListVideo.map((i) => {
-                                return ( 
-                                <div className = "video-item-thumbnail">
-                                    <div className = "thumbnail-inner">
-                                        <div className ="thumb-box">
-                                            <Link to="#">
-                                            <img src= {videoImageDocCoCauBai} />
-                                            </Link>
-                                        </div>
-                                        <div className = "video-time-play">
-                                            <span className = "time-play-status">45:20</span>
-                                        </div>
-                                    </div>
-                                    <div className = "video-details">
-                                        <div className ="video-details-inner">
-                                            <h3 className = "video-title">
-                                                <Link to="#" className ="title"> Phim kiếm hiệp hay nhất || Độc cô cầu bại</Link>
-                                            </h3>
-                                            <div className = "video-auth">
-                                                <Link to="#" className ="video-auth-text">chris le</Link>
-                                            </div>
-                                            <div className = "video-detail-meta">
-                                                <span className = "view-meta">3.5k luot xem </span>
-                                                <span className = "date-meta">2 thang truoc</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                );
-                            })
-                        }
-                        </div>
-                    </div>       
-                </section>
+                    <nav id="us-nav">
+                        <ul>
+                            <li className="active"><Link to={'/edu/'+usId }>Video tải lên </Link></li>
+                            <li><Link to={'/edu/'+ usId +'/about'}>giới thiệu</Link></li>
+                            <li><Link to={'/edu/'+ usId +'/setting'}>Cài đặt</Link></li>
 
-                {/* Tiếng Anh giao tiếp */}
-                <section className="row-item-video-container">
-                    <div className="header-section">
-                        <div className ="title-text"> Đề xuất cho bạn
-                        </div>
-                    </div>
-                    <div className="video-body-card">
-                        <div className="video-body-card-inner">
-                        {
-                            itemListVideo.map((i) => {
-                                return ( 
-                                <div className = "video-item-thumbnail">
-                                    <div className = "thumbnail-inner">
-                                        <div className ="thumb-box">
-                                            <Link to="#">
-                                            <img src= {videoImageDocCoCauBai} /> 
-                                            </Link>
-                                        </div>
-                                        <div className = "video-time-play">
-                                            <span className = "time-play-status">45:20</span>
-                                        </div>
-                                    </div>
-                                    <div className = "video-details">
-                                        <div className ="video-details-inner">
-                                            <h3 className = "video-title">
-                                                <Link to="#" className ="title"> Phim kiếm hiệp hay nhất || Độc cô cầu bại</Link>
-                                            </h3>
-                                            <div className = "video-auth">
-                                                <Link to="#" className ="video-auth-text">chris le</Link>
-                                            </div>
-                                            <div className = "video-detail-meta">
-                                                <span className = "view-meta">3.5k luot xem </span>
-                                                <span className = "date-meta">2 thang truoc</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                );
-                            })
-                        }
-                        </div>
-                    </div>       
-                </section>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+            <div id="content">
+                <div>
+                <Switch>
+                    <Route path="/edu/:usId/" exact component={Video} />
+                    <Route path="/edu/:usId/about" component={About} />
+                    <Route path="/edu/:usId/setting" component={Setting} />
+                </Switch>
+                </div>
 
                 {/* end noi section */}
             </div>{/* end noi content */}

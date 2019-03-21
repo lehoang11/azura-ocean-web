@@ -1,0 +1,27 @@
+.acount-page {
+    width: 100%;
+    height: auto;
+    float: left;
+    display: block;
+}
+.acount-page .header {
+    width: 100%;
+    height: auto;
+    min-height: 0px;
+    
+    float: left;
+    display: block;
+    border-bottom: 1px solid #ddd;
+    padding: 12px 0;
+}
+.acount-page .header .title {
+    font-size: 20px;
+    font-weight: 600;
+}
+.acount-page .acount-page-content {
+    width: 100%;
+    height: auto;
+    float: left;
+    display: block;
+    margin-top: 24px;
+}

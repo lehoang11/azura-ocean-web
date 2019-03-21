@@ -7,15 +7,24 @@ import  Login  from '../views/Auth/Login';
 import  Register  from '../views/Auth/Register';
 import  Home  from '../views/Home';
 import  SchoolView  from '../views/School/View';
+import  Watch  from '../views/Watch';
 import  PageNotFound  from '../views/ErrorPage/PageNotFound';
+import  SchoolCreate  from '../views/School/Create';
+import  AccountProfile  from '../views/Account/Profile';
+import Upload from "../views/Upload"
 
 const AppRouter = () => (  
 <Router history={history}>
     <Switch>
         <PrivateRoute exact path="/" component={Home} />
+        <PrivateRoute path="/edu_create" component={SchoolCreate} />
+        <PrivateRoute path="/account/profile" component={AccountProfile} />
+        <PrivateRoute path="/upload" component={Upload} />
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
-        <Route path="/school/:id" component={SchoolView} />
+        <Route path="/edu/:id" component={SchoolView} />
+        
+        <Route path="/watch" component={Watch} />
 
         <Route component={PageNotFound}/>
     </Switch>

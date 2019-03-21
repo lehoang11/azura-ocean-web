@@ -1,0 +1,89 @@
+.upload-page {
+    width: 100%;
+    height: auto;
+    float: left;
+    display: block;
+    margin-top: 24px;
+}
+.upload-page .upload-wrap {
+    width: 800px;
+    min-height: 800px;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+    border: 1px solid #ddd;
+    background: #FFF;
+    padding: 5px;
+}
+
+.upload-wrap .upload-video-wrap {
+    width: 100%;
+    height: auto;
+    float: left;
+    display: block;
+}
+.upload-video-wrap .form-file {
+    width: 100%;
+    height: auto;
+    float: left;
+    display: block;
+    text-align: center;
+}
+.upload-video-wrap .form-file .thumb-upload{
+    width: 300px;
+    height: 150px;
+    margin: 0 auto;
+    display: inline-block;
+    border :1px dotted #ddd;
+    margin-top: 12px;
+    border-radius: 5px;
+}
+
+.media-btn-wrapper {
+    line-height: 150px;
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+  }
+  
+.media-btn-wrapper button {
+    border: 2px solid #2cabe3;;
+    color: #2cabe3;;
+    background-color: white;
+    padding: 8px 20px;
+    border-radius: 8px;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 5px;
+}
+
+.media-btn-wrapper input[type=file] {
+    font-size: 100px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+}
+
+.upload-video-wrap .form-media {
+    width: 100%;
+    height: 100%;
+    float: left;
+    display: block;
+    margin-top: 12px;
+}
+.upload-video-wrap .form-media .video-wrap {
+    width: 240px;
+    height: auto;
+    min-height: 200px;
+    float: left;
+    display: block;
+    border: 1px dotted #ddd;
+}
+.upload-video-wrap .form-media .form-text {
+    width: calc(100% - 245px);
+    height: auto;
+    float: left;
+    display: block;
+    margin-left: 5px;
+}

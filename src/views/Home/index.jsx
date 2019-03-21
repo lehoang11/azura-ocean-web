@@ -30,7 +30,7 @@ class Home extends React.Component {
                                     <div className = "thumbnail-inner">
                                         <div className ="thumb-box">
                                             <Link to="#">
-                                            <img src= {videoImageDocCoCauBai} />
+                                            <img src= {videoImageDocCoCauBai} alt="videoImageDocCoCauBai" />
                                             </Link>
                                         </div>
                                         <div className = "video-time-play">
@@ -74,7 +74,7 @@ class Home extends React.Component {
                                     <div className = "thumbnail-inner">
                                         <div className ="thumb-box">
                                             <Link to="#">
-                                            <img src= {videoImageDocCoCauBai} /> 
+                                            <img src= {videoImageDocCoCauBai} alt="videoImageDocCoCauBai" /> 
                                             </Link>
                                         </div>
                                         <div className = "video-time-play">
