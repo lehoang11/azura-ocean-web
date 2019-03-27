@@ -2,7 +2,6 @@ import React from "react"
 import Header from "../../components/Header/Header"
 import Aside from "../../components/MenuBar/Aside"
 import { Link } from 'react-router-dom';
-import "../../assets/css/account.css"
 import usAvatar from "../../assets/img/varun.jpg";
 
 class AccountProfile extends React.Component {

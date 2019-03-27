@@ -12,21 +12,29 @@ import  PageNotFound  from '../views/ErrorPage/PageNotFound';
 import  SchoolCreate  from '../views/School/Create';
 import  AccountProfile  from '../views/Account/Profile';
 import Upload from "../views/Upload"
+import MainLayout from "../views/MainLayout/MainLayout"
 
 const AppRouter = () => (  
 <Router history={history}>
     <Switch>
-        <PrivateRoute exact path="/" component={Home} />
-        <PrivateRoute path="/edu_create" component={SchoolCreate} />
-        <PrivateRoute path="/account/profile" component={AccountProfile} />
-        <PrivateRoute path="/upload" component={Upload} />
+
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
-        <Route path="/edu/:id" component={SchoolView} />
-        
-        <Route path="/watch" component={Watch} />
+
+        <Route path='/'>
+            <MainLayout>
+                <PrivateRoute exact path="/" component={Home} />
+                <PrivateRoute path="/edu_create" component={SchoolCreate} />
+                <PrivateRoute path="/account/profile" component={AccountProfile} />
+                <PrivateRoute path="/upload" component={Upload} />
+                <Route path="/edu/:id" component={SchoolView} />       
+                <Route path="/watch" component={Watch} />  
+            </MainLayout> 
+        </Route>
 
         <Route component={PageNotFound}/>
+         
+        
     </Switch>
 </Router>
 );

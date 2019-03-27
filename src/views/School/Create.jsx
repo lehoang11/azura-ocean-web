@@ -2,8 +2,6 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Header from "../../components/Header/Header"
 import Aside from "../../components/MenuBar/Aside"
-import { Link } from 'react-router-dom';
-import "../../assets/css/school-create.css"
 
 class SchoolCreate extends React.Component {
     

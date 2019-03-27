@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 import Header from "../../components/Header/Header"
 import Aside from "../../components/MenuBar/Aside"
 import { Link } from 'react-router-dom';
-import "../../assets/css/school.css"
-import "../../assets/css/video.css"
 import bannerSchool from "../../assets/img/demo/banner-school.jpg";
 import usAvatar from "../../assets/img/varun.jpg";
 import { Route, Switch  } from 'react-router-dom';

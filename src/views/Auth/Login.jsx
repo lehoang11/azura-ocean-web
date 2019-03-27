@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import userAction from '../../actions/userAction';
 import "../../assets/css/login.css"
-import "../../assets/css/fontawesome-all.css"
 
 class Login extends React.Component {
     constructor(props) {

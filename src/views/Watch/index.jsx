@@ -3,7 +3,6 @@ import Header from "../../components/Header/Header"
 import Aside from "../../components/MenuBar/Aside"
 import { Link } from 'react-router-dom';
 import { Player, ControlBar } from 'video-react';
-import "../../assets/css/watch.css"
 import video720x480 from "../../assets/video/SampleVideo_720x480_30mb.mp4"
 import videoImageDocCoCauBai from "../../assets/img/doc-co-cau-bai.jpg";
 import "video-react/dist/video-react.css";

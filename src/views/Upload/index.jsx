@@ -1,9 +1,6 @@
 import React from "react"
 import Header from "../../components/Header/Header"
 import Aside from "../../components/MenuBar/Aside"
-import { Link } from 'react-router-dom';
-import "../../assets/css/upload.css"
-import usAvatar from "../../assets/img/varun.jpg";
 
 class Upload extends React.Component {
 
