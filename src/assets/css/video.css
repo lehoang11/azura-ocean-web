@@ -257,8 +257,7 @@
  /*page watch video*/
  .azura-video-player {
     width: 100%;
-    height: auto;
-    min-height: 400px;
+    height: 400px;
     float: left;
     display: block;
  }

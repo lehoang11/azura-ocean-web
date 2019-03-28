@@ -6,11 +6,11 @@ import PrivateRoute from './PrivateRoute'
 import  Login  from '../views/Auth/Login';
 import  Register  from '../views/Auth/Register';
 import  Home  from '../views/Home';
-import  SchoolView  from '../views/School/View';
 import  Watch  from '../views/Watch';
+import  EduIndex  from '../views/Edu';
+import  AccountIndex  from '../views/Account';
+import  EduCreate  from '../views/Edu/EduCreate';
 import  PageNotFound  from '../views/ErrorPage/PageNotFound';
-import  SchoolCreate  from '../views/School/Create';
-import  AccountProfile  from '../views/Account/Profile';
 import Upload from "../views/Upload"
 import MainLayout from "../views/MainLayout/MainLayout"
 
@@ -24,10 +24,11 @@ const AppRouter = () => (
         <Route path='/'>
             <MainLayout>
                 <PrivateRoute exact path="/" component={Home} />
-                <PrivateRoute path="/edu_create" component={SchoolCreate} />
-                <PrivateRoute path="/account/profile" component={AccountProfile} />
+                <PrivateRoute path="/edu/:id" component={EduIndex} />
+                <PrivateRoute path="/edu_create" component={EduCreate} />
+                <PrivateRoute path="/account" component={AccountIndex} />
                 <PrivateRoute path="/upload" component={Upload} />
-                <Route path="/edu/:id" component={SchoolView} />       
+                {/* <Route path="/edu/:id" component={SchoolView} />        */}
                 <Route path="/watch" component={Watch} />  
             </MainLayout> 
         </Route>
