@@ -8,7 +8,10 @@ import logoLight from "../../assets/images/logos/logo-light-text.png";
 import { connect } from 'react-redux';
 
 class Header extends React.Component {
-
+    constructor(props) {
+        super(props);
+        this.state = {};
+    }
     render () {
         const { user } = this.props;
         return (
@@ -17,7 +20,7 @@ class Header extends React.Component {
                     <div className="navbar-header border-right">
                         <Link to="#" className="nav-toggler waves-effect waves-light d-block d-md-none">
                         <i className="ti-menu ti-close"></i></Link>
-                        <Link className="navbar-brand" to="/ggf">
+                        <Link className="navbar-brand" to={'/'}>
                             <b className="logo-icon">
                                 <img src={logoIconDark} alt="homepage" className="dark-logo" />
                                 <img src={logoIconLight} alt="homepage" className="light-logo" />
@@ -49,7 +52,7 @@ class Header extends React.Component {
                             <li className="nav-item dropdown">
                                 <Link className="nav-link dropdown-toggle waves-effect waves-dark" to="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <img src={userAvatar} alt="user" className="rounded-circle" width="36" />
-                                    <span className="ml-2 font-medium">{user.firstName}</span>
+                                    <span className="ml-2 font-medium">{user.email}</span>
                                     <span className="fa fa-angle-down ml-2"></span>
                                 </Link>
                                 <div className="dropdown-menu dropdown-menu-right user-dd animated flipInY">
@@ -60,7 +63,7 @@ class Header extends React.Component {
                                     
                                     <Link className="dropdown-item" to="#"><i className="ti-settings mr-1 ml-1"></i> Account Setting</Link>
                                     <div className="dropdown-divider"></div>
-                                    <Link className="dropdown-item" to="login"><i className="fa fa-power-off mr-1 ml-1"></i> Logout</Link>
+                                    <a className="dropdown-item" href="/login"><i className="fa fa-power-off mr-1 ml-1"></i> Logout</a>
                                 </div>
                             </li>
                         </ul>
@@ -73,11 +76,5 @@ class Header extends React.Component {
 
 }
 
-function mapStateToProps(state) {
-    const { authentication } = state;
-    const { user } = authentication;
-    return {
-        user
-    };
-}
-export default connect(mapStateToProps)(Header);
+
+export default Header;

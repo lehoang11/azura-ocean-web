@@ -21,15 +21,15 @@ const AppRouter = () => (
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
 
-        <Route path='/'>
+        <Route  path='/'>
             <MainLayout>
                 <PrivateRoute exact path="/" component={Home} />
-                <PrivateRoute path="/edu/:id" component={EduIndex} />
+                <PrivateRoute path="/edu/:shortName?_.:id" component={EduIndex} />
                 <PrivateRoute path="/edu_create" component={EduCreate} />
                 <PrivateRoute path="/account" component={AccountIndex} />
                 <PrivateRoute path="/upload" component={Upload} />
                 {/* <Route path="/edu/:id" component={SchoolView} />        */}
-                <Route path="/watch" component={Watch} />  
+                <Route path="/watch/:shortName?_.:id?" component={Watch} />  
             </MainLayout> 
         </Route>
 
