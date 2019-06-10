@@ -23,7 +23,7 @@ const VideoItem = ({tutorial}) => (
             <Link to={'/watch/'+tutorial.shortName+'_.'+tutorial.id} className ="title"> {tutorial.name}</Link>
             </h3>
             <div className = "video-auth">
-            <Link to={'/edu/'+tutorial.eduShortName+'_.'+tutorial.eduId} className ="video-auth-text">{tutorial.eduName}</Link>
+            <Link to={'/edu/'+tutorial.eduShortName} className ="video-auth-text">{tutorial.eduName}</Link>
             </div>
             <div className = "video-detail-meta">
                 <span className = "view-meta">{tutorial.viewTotal} <i className="ti-eye"></i> </span>

@@ -1,11 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Header from "../../components/Header/Header"
-import Aside from "../../components/MenuBar/Aside"
 import { Link } from 'react-router-dom';
 import "../../assets/css/video.css"
 import VideoList from "../../components/Video/VideosList"
-import TutorialAPI from '../../services/tutorialService'
+import TutorialAPI from '../../api/tutorialApi'
+import LoadingBar from 'react-top-loading-bar'
 
 
 class Home extends React.Component {
@@ -14,12 +13,21 @@ class Home extends React.Component {
         this.state = {
             tutorials: [],
             isLoading: true,
-            errors: null
+            errors: null,
+            loadingBarProgress: 0
           };
     }
 
+    complete = () => {
+        this.setState({ loadingBarProgress: 100 })
+    }
+    
+    onLoaderFinished = () => {
+        this.setState({ loadingBarProgress: 0 })
+    }
 
-      getTutorialList = () => {
+
+    getTutorialList = () => {
         return TutorialAPI.getTutorialList().then(
             (res) => {
                 if (res.data.code == 200) {
@@ -27,6 +35,7 @@ class Home extends React.Component {
                         tutorials: res.data.data.content,
                         isLoading: false,
                     })
+                    this.complete()
                 }
             },
             (err) => {
@@ -38,11 +47,14 @@ class Home extends React.Component {
             }
         )
 
-      }
+    }
 
-      componentDidMount() {
+    componentWillMount(){
+    }
+
+    componentDidMount() {
         this.getTutorialList();
-      }
+    }
 
 
 
@@ -51,6 +63,12 @@ class Home extends React.Component {
         const { isLoading, tutorials } = this.state;
         return (
         <div>
+            <LoadingBar
+            progress={this.state.loadingBarProgress}
+            height={3}
+            color="red"
+            onLoaderFinished={() => this.onLoaderFinished()}
+            />
             <div className="page-wrapper">
                 <div className="page-content container-fluid">
                     {/* content */}
@@ -73,12 +91,8 @@ class Home extends React.Component {
     }
 }
 
-function mapStateToProps(state) {
-    const { authentication } = state;
-    const { user } = authentication;
-    return {
-        user
-    };
-}
+const mapStateToProps = state => ({
+    user :state.userReducer.user
+  });
 
 export default connect(mapStateToProps)(Home);

@@ -1,56 +1,81 @@
-import React from 'react';
+import React from "react";
 import { Link } from 'react-router-dom';
-import videoImageDocCoCauBai from "../../assets/img/doc-co-cau-bai.jpg";
+import { connect } from 'react-redux';
+import VideoList from "../../components/Video/VideosList"
+import TutorialAPI from '../../api/tutorialApi'
 
 class VideoTab extends React.Component {
-    render (){
-        return (                                        
+    constructor(props) {
+        super(props);
+        this.state = {
+            tutorials : [],
+            isLoadingTutorial: true,
+        };
+    }
+
+    componentWillMount(){
+
+    }
+
+    componentDidMount(){
+        setTimeout(() => {
+            const { eduData } = this.props;
+            let eduId = eduData.data.id;
+            if(eduId !=='' || eduId !==undefined){
+                console.log('h-eduId' +eduId);
+                this.getListTutorialByEduId(eduId);
+            }
+        }, 3000);
+
+    }
+
+    getListTutorialByEduId = (eduId) => {
+        return TutorialAPI.getListTutorialByEduId(eduId).then(
+            (res) => {
+                if (res.data.code == 200) {
+                    this.setState({
+                        tutorials: res.data.data.content,
+                        isLoadingTutorial: false,
+                    })
+                }
+            },
+            (err) => {
+                console.log("error get data");
+                this.setState({
+                    isLoadingTutorial: true,
+                    errors :err,
+                })
+            }
+        )
+    }
+
+    render () {
+
+        const { isLoadingTutorial, tutorials } = this.state;
+
+        return (
             <div className="container-fluid">
                 <div className="row p-4">
                     <div className="col-lg-12 col-md-12 col-sm-12 col-sx-12">
                         <div className="section-title-box">
-                            <div className ="section-title text-uppercase"> Video tải lên
+                            <div className ="section-title text-uppercase"> Video push
                             </div>
                         </div>
                     </div>
                     <div className="col-lg-12 col-md-12 col-sm-12 col-sx-12">
-                        <section className="list-video-show">
-                            <div className="video-body-card">
-
-                                <div className = "video-item-thumbnail">
-                                    <div className = "thumbnail-inner">
-                                        <div className ="thumb-box">
-                                            <Link to="/">
-                                            <img src={videoImageDocCoCauBai} alt="videoImageDocCoCauBai" />
-                                            </Link>
-                                        </div>
-                                        <div className = "video-time-play">
-                                            <span className = "time-play-status">45:20</span>
-                                        </div>
-                                    </div>
-                                    <div className = "video-details">
-                                        <h3 className = "video-title">
-                                            <Link to="#" className ="title"> Phim kiếm hiệp hay nhất || Độc cô cầu bại</Link>
-                                        </h3>
-                                        <div className = "video-auth">
-                                            <Link to ="#" className ="video-auth-text">chris le</Link>
-                                        </div>
-                                        <div className = "video-detail-meta">
-                                            <span className = "view-meta">3.5k luot xem </span>
-                                            <span className = "date-meta">2 thang truoc</span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>       
-                        </section>
+                    {!isLoadingTutorial ? <div><VideoList tutorials={tutorials} /></div> :<p>Loading...</p>}
                     </div>
                 </div>
             </div>
-
-
+    
         );
     }
+
 }
 
-export default VideoTab;
+const mapStateToProps = state => ({
+    eduData: state.eduReducer.edu
+  });
+    
+
+export default connect(mapStateToProps)(VideoTab);

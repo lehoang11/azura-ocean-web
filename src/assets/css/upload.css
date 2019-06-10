@@ -1,0 +1,124 @@
+.upload-page-wrapper {
+    width: 100%;
+    height: auto;
+    min-height: 300px;
+    float: left;
+    display: block;
+}
+.upload-page-wrapper .video-upload-wrap 
+{
+   width: 260px;
+   height: auto;
+   min-height: 200px;
+   float: left;
+   display: block;
+   border-radius: 15px;
+   text-align: center;
+}
+
+.upload-page-wrapper .image-upload-wrap {
+   width: 230px;
+   height: auto;
+   min-height: 200px;
+   float: left;
+   display: block;
+   border-radius: 15px;
+   margin-left: 5px;
+   text-align: center;
+   margin-top: 50px
+
+}
+.video-upload-wrap .btn-video-wrap {
+   width: 100%;
+   height: auto;
+   min-height: 1px;
+   float: left;
+   display: block;
+   margin-top: 2px;
+}
+.video-upload-wrap .show-video-upload {
+   width: 100%;
+   height: auto;
+   min-height: 1px;
+   float: left;
+   display: block;
+   margin-top: 2px;
+   border-top: 1px solid #ddd;
+}
+
+.video-upload-wrap .video-btn-wrapper {
+   position: relative;
+   overflow: hidden;
+   display: inline-block;
+}
+
+.video-upload-wrap .video-btn-wrapper button {
+   border: 2px dotted #2cabe3;;
+   color: #2cabe3;;
+   background-color: white;
+   padding: 8px 20px;
+   border-radius: 8px;
+   font-size: 18px;
+   font-weight: 550;
+   border-radius: 5px;
+}
+
+.video-upload-wrap .video-btn-wrapper input[type=file] {
+   font-size: 100px;
+   position: absolute;
+   left: 0;
+   top: 0;
+   opacity: 0;
+}
+/*image upload page video*/
+.image-upload-wrap .btn-img-upload {
+   width: 100%;
+   height: auto;
+   min-height: 1px;
+   float: left;
+   display: block;
+   margin-top: 2px;
+}
+.image-upload-wrap .show-img-upload {
+   width: 100%;
+   height: auto;
+   min-height: 1px;
+   float: left;
+   display: block;
+   margin-top: 2px;
+   border-top: 1px solid #ddd;
+}
+
+.image-upload-wrap .image-btn-wrapper {
+   position: relative;
+   overflow: hidden;
+   display: inline-block; 
+}
+
+.image-upload-wrap .image-btn-wrapper button {
+   border: 1px dotted #2cabe3;
+   color: #2cabe3;;
+   background-color: white;
+   padding: 8px 20px;
+   border-radius: 8px;
+   font-size: 16px;
+   font-weight: 550;
+   border-radius: 5px;
+}
+
+.image-upload-wrap .image-btn-wrapper input[type=file] {
+   font-size: 100px;
+   position: absolute;
+   left: 0;
+   top: 0;
+   opacity: 0;
+}
+
+/*end image upload page video*/
+.upload-page-wrapper .form-upload {
+   width: 100%;
+   height: auto;
+   min-height: 0px;
+   float: left;
+   display: block;
+}

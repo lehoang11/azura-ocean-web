@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import _ from 'lodash';
-import eduAPI from '../../services/eduService'
+import eduAPI from '../../api/eduApi'
 import toastConstant from '../../constants/toastConstant'
 import showToast from '../../components/toast/showToast'
 import { connect } from 'react-redux';
@@ -82,7 +82,7 @@ class EduCreate extends React.Component {
                         const edu = res.data.data;
                         console.log('success create edu');
                         showToast("Edu created successful",toastConstant.SUCCESS);
-                        window.location = '/edu/'+ edu.shortName+'_.'+edu.id ;
+                        window.location = '/edu/'+ edu.shortName;
                         
                     }else{
                         //messager create edu fail
@@ -158,13 +158,9 @@ class EduCreate extends React.Component {
     }
 }
 
-function mapStateToProps(state) {
-    const { authentication } = state;
-    const { user } = authentication;
-    return {
-        user
-    };
-}
+const mapStateToProps = state => ({
+    user :state.userReducer.user
+});
 
 export default connect(mapStateToProps)(EduCreate);
 

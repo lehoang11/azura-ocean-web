@@ -1,10 +1,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import userAction from '../../actions/userAction';
 import bgRe1 from "../../assets/img/bg-re-1.png";
 import bgRe2 from "../../assets/img/bg-re-2.png";
 import "../../assets/css/register.css";
+import { register} from '../../actions/userAction'
 
 class Register extends React.Component {
     constructor(props) {
@@ -41,14 +41,12 @@ class Register extends React.Component {
 
         this.setState({ submitted: true });
         const { user } = this.state;
-        const { dispatch } = this.props;
         if (user.firstName && user.lastName && user.email && user.password) {
-            dispatch(userAction.register(user));
+            this.props.register(user);
         }
     }
 
     render() {
-        const { registering  } = this.props;
         const { user, submitted } = this.state;
         return (
            <div className="register-wrap">
@@ -102,7 +100,6 @@ class Register extends React.Component {
                        <span>Register</span>
                    </button>
                    <Link to="/login" className="btn btn-link">Đăng nhập</Link>
-                   {registering}
                </form>
                <img src={bgRe2} alt="" className="image-2" />
            </div>
@@ -112,11 +109,13 @@ class Register extends React.Component {
     }
 }
 
-function mapStateToProps(state) {
-    const { registering } = state.registration;
-    return {
-        registering
-    };
-}
 
-export default connect(mapStateToProps)(Register);
+const mapStateToProps = state => ({
+    registration :state.registration.registering
+  });
+    
+const mapDispatchToProps = {
+    register :register
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Register);

@@ -12,22 +12,21 @@ class SideBar extends React.Component {
                 <nav className="sidebar-nav">
                     <ul id="sidebarnav">
                         <li className="sidebar-item">
-                            <Link className="sidebar-link  waves-effect waves-dark profile-dd" to="/home" aria-expanded="false">
-                                <img src={userAvatar} className="rounded-circle ml-2" width="30" />
-                                <span className="hide-menu">Steve Jection </span>
+                            <Link className="sidebar-link waves-effect waves-dark sidebar-link" to="/" aria-expanded="false">
+                                <i className="mdi mdi-home"></i>
+                                <span className="hide-menu">Home</span>
                             </Link>
                         </li>
-
+                        {/* <li className="sidebar-item">
+                            <Link className="sidebar-link waves-effect waves-dark sidebar-link" to="/history" aria-expanded="false">
+                                <i className="mdi mdi-history"></i>
+                                <span className="hide-menu">History</span>
+                            </Link>
+                        </li> */}
                         <li className="sidebar-item">
-                            <Link className="sidebar-link waves-effect waves-dark sidebar-link" to="/auth" aria-expanded="false">
+                            <Link className="sidebar-link waves-effect waves-dark sidebar-link" to="/edufollow" aria-expanded="false">
                                 <i className="mdi mdi-calendar-check"></i>
-                                <span className="hide-menu">Calendar</span>
-                            </Link>
-                        </li>
-                        <li className="sidebar-item">
-                            <Link className="sidebar-link waves-effect waves-dark sidebar-link" to="/vi" aria-expanded="false">
-                                <i className="mdi mdi-adjust text-info"></i>
-                                <span className="hide-menu">Log Out</span>
+                                <span className="hide-menu">Edu follow</span>
                             </Link>
                         </li>
                         

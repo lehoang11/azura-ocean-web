@@ -11,6 +11,7 @@ class MainLayout extends Component {
 
     render(){
         const { user } = this.props;
+        //console.log(user)
         return (
             <div>
                 <div id="main-wrapper">
@@ -23,11 +24,8 @@ class MainLayout extends Component {
     }
 }
 
-function mapStateToProps(state) {
-    const { authentication } = state;
-    const { user } = authentication;
-    return {
-        user
-    };
-}
+const mapStateToProps = state => ({
+    user :state.userReducer.user
+  });
+
 export default connect(mapStateToProps)(MainLayout);
