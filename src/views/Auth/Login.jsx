@@ -46,8 +46,6 @@ class Login extends React.Component {
         <div id="login-wrap">
         <div>.</div>
             <h1>
-                <span>L</span>ogIn
-                <span>T</span>o
                 <span>A</span>zura
                 <span>O</span>cean
             </h1>
@@ -100,11 +98,7 @@ class Login extends React.Component {
                 </form>
             </div>
 
-            <div className="footer">
-                <p>&copy; 2019 Azura Ocean |
-                    <Link to ="#">Hi</Link>
-                </p>
-            </div>
+            
         </div>
         );
     }

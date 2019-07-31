@@ -1,6 +1,5 @@
 import React from "react"
 import { Link } from 'react-router-dom';
-import { Player, ControlBar } from 'video-react';
 import "video-react/dist/video-react.css";
 import ReactPlayer from 'react-player'
 import ShowMore from 'react-show-more';
@@ -16,9 +15,9 @@ import { connect } from 'react-redux';
 import history from "../../helpers/history";
 import eduAPI   from '../../api/eduApi'
 import likeAPI   from '../../api/likeApi'
-import ImageDocCoCauBai from "../../assets/img/doc-co-cau-bai.jpg";
 
-class Watch extends React.Component {
+
+class Preview extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -34,8 +33,14 @@ class Watch extends React.Component {
             commentObj :{},
             commentList :[],
             commentNew : null,
+            editForm : false,
             commentForm :{
                 commentContent :''
+            },
+            tutorialForm : {
+                tuName : '',
+                tuContent : ''
+                
             }
         };
         this.removeComment = this.removeComment.bind(this);
@@ -50,13 +55,19 @@ class Watch extends React.Component {
         const target = event.target;
         const value = target.type === 'checkbox' ? target.checked : target.value;
         const name = target.name;
-        const { commentForm } = this.state;
+        const { commentForm, tutorialForm } = this.state;
         this.setState({
             commentForm: {
                     ...commentForm,
-                    [name]: value }
+                    [name]: value },
+            tutorialForm : {
+                ... tutorialForm,
+                [name] : value ,
+            }
         })
     }
+
+
 
     componentDidMount() {
         this.getTutorialById();
@@ -65,6 +76,13 @@ class Watch extends React.Component {
             this.getCommentList();
 
             const {tutorial } = this.state;
+
+            this.setState({
+                tutorialForm: {
+                    tuName : tutorial.name,
+                    tuContent : tutorial.content
+                }
+            })
 
             const { user} = this.props;
             let eduId = tutorial.eduId;
@@ -416,6 +434,62 @@ class Watch extends React.Component {
         )
     }
 
+    clickSave =()=>{
+        //var val = this.refs.newText.value;
+        const { tutorialForm } = this.state;
+
+        let name = _.trim(tutorialForm.tuName);
+        let content = _.trim(tutorialForm.tuContent);
+        console.log('name :'+name)
+        this.setState({
+            editForm :false
+        })
+    }
+
+    clickCal=()=>{
+        this.setState({
+            editForm :false
+        })
+    }
+
+    clickEdit=()=>{
+        this.setState({
+            editForm :true
+        })
+    }
+    
+
+    renderNormalClick(key, data){
+        return(
+            <div data-key={key} style={{width:"100%"}}>
+                <div style={{width:"50%"}}>{data}</div> 
+                <div style={{width:"50%"}}>
+                    <button onClick={this.clickEdit}>Edit</button>
+                </div>
+            </div>
+        );  
+    }
+
+    renderFormEdit(key, data){
+        return(
+            <div>
+                <input name={key} value={data} onChange={this.handleInputChange} />
+                <button onClick={this.clickSave}> Save </button>
+                <button onClick={this.clickCal}> Cal </button>
+            </div>
+        );
+    }
+
+    formRender(key, data){
+        if (this.state.editForm ==false) {
+            return this.renderNormalClick(key, data)
+        } else {
+            return this.renderFormEdit(key, data)
+        }
+    }
+
+
+
 
 
     render () {
@@ -441,7 +515,7 @@ class Watch extends React.Component {
                                     
                             <div className="video-player-details">
                                 <div className="video-player-name">
-                                {tutorial.name}
+                                    {this.formRender('tuName', this.state.tutorialForm.tuName)}
                                 </div>
                                 <div className="video-player-pra">
                                     <span className="video-player-date">
@@ -524,168 +598,8 @@ class Watch extends React.Component {
                         <div className="col-md-4">
                             <div className="card">
                                 <div className="card-body">
-
-                                    <div className="playlist-wrap">
-
-                                        <div className="item-playlist">
-                                            <div className="thumb">
-                                                <Link to={'/watch/'}>
-                                                    <img src= {ImageDocCoCauBai} alt="videoImageDocCoCauBai" />
-                                                </Link>
-                                            
-                                                <div className = "time-play">
-                                                    <span className ="duration">45:20</span>
-                                                </div>
-                                            </div>
-                                       
-                                            <div className="playlist-detail">
-                                                <h3>
-                                                    <Link to={'/watch/'} className ="title"> Học tiếng anh cấp tốc chương trình lớp 1</Link>
-                                                </h3>
-                                            </div>
-                                        </div>
-
-                                        <div className="item-playlist">
-                                            <div className="thumb">
-                                                <Link to={'/watch/'}>
-                                                    <img src= {ImageDocCoCauBai} alt="videoImageDocCoCauBai" />
-                                                </Link>
-                                            
-                                                <div className = "time-play">
-                                                    <span className ="duration">45:20</span>
-                                                </div>
-                                            </div>
-                                       
-                                            <div className="playlist-detail">
-                                                <h3>
-                                                    <Link to={'/watch/'} className ="title"> Học tiếng anh cấp tốc chương trình lớp 2 </Link>
-                                                </h3>
-                                            </div>
-                                        </div>
-
-                                        <div className="item-playlist">
-                                            <div className="thumb">
-                                                <Link to={'/watch/'}>
-                                                    <img src= {ImageDocCoCauBai} alt="videoImageDocCoCauBai" />
-                                                </Link>
-                                            
-                                                <div className = "time-play">
-                                                    <span className ="duration">45:20</span>
-                                                </div>
-                                            </div>
-                                       
-                                            <div className="playlist-detail">
-                                                <h3>
-                                                    <Link to={'/watch/'} className ="title"> Học tiếng anh cấp tốc chương trình lớp 3 </Link>
-                                                </h3>
-                                            </div>
-                                        </div>
-
-                                        <div className="item-playlist">
-                                            <div className="thumb">
-                                                <Link to={'/watch/'}>
-                                                    <img src= {ImageDocCoCauBai} alt="videoImageDocCoCauBai" />
-                                                </Link>
-                                            
-                                                <div className = "time-play">
-                                                    <span className ="duration">45:20</span>
-                                                </div>
-                                            </div>
-                                       
-                                            <div className="playlist-detail">
-                                                <h3>
-                                                    <Link to={'/watch/'} className ="title"> Học tiếng anh cấp tốc chương trình lớp 4 </Link>
-                                                </h3>
-                                            </div>
-                                        </div>
-
-                                        <div className="item-playlist">
-                                            <div className="thumb">
-                                                <Link to={'/watch/'}>
-                                                    <img src= {ImageDocCoCauBai} alt="videoImageDocCoCauBai" />
-                                                </Link>
-                                            
-                                                <div className = "time-play">
-                                                    <span className ="duration">45:20</span>
-                                                </div>
-                                            </div>
-                                       
-                                            <div className="playlist-detail">
-                                                <h3>
-                                                    <Link to={'/watch/'} className ="title"> Học tiếng anh cấp tốc chương trình lớp 5</Link>
-                                                </h3>
-                                            </div>
-                                        </div>
-
-                                        <div className="item-playlist">
-                                            <div className="thumb">
-                                                <Link to={'/watch/'}>
-                                                    <img src= {ImageDocCoCauBai} alt="videoImageDocCoCauBai" />
-                                                </Link>
-                                            
-                                                <div className = "time-play">
-                                                    <span className ="duration">45:20</span>
-                                                </div>
-                                            </div>
-                                       
-                                            <div className="playlist-detail">
-                                                <h3>
-                                                    <Link to={'/watch/'} className ="title"> Học tiếng anh cấp tốc chương trình lớp 6 </Link>
-                                                </h3>
-                                            </div>
-                                        </div>
-                                        
-                                    </div>
-
-                                    <div className="videolist-y-wrap">
-                                        <div className="item-videolist-y">
-                                            <div className ="thumb">
-                                                <Link to={'/watch/'}>
-                                                    <img src= {ImageDocCoCauBai} alt="videoImageDocCoCauBai" />
-                                                </Link>
-
-                                                <div className = "time-play">
-                                                    <span className ="duration">45:20</span>
-                                                </div>
-                                            </div>
-                                            
-                                            <div className="videolist-y-detail">
-                                                <h3>
-                                                    <Link to={'/watch/'} className ="title"> Học tiếng anh cấp tốc chương trình lớp 6 </Link>
-                                                </h3>
-                                                <div className = "meta">
-                                                    <span className = "view-meta">{tutorial.viewTotal} <i className="ti-eye"></i> </span>
-                                                    <span className = "date-meta">{moment(tutorial.createdAt).fromNow()}</span>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div className="item-videolist-y">
-                                            <div className ="thumb">
-                                                <Link to={'/watch/'}>
-                                                    <img src= {ImageDocCoCauBai} alt="videoImageDocCoCauBai" />
-                                                </Link>
-
-                                                <div className = "time-play">
-                                                    <span className ="duration">45:20</span>
-                                                </div>
-                                            </div>
-                                            
-                                            <div className="videolist-y-detail">
-                                                <h3>
-                                                    <Link to={'/watch/'} className ="title"> Học tiếng anh cấp tốc chương trình lớp 6 </Link>
-                                                </h3>
-                                                <div className = "meta">
-                                                    <span className = "view-meta">{tutorial.viewTotal} <i className="ti-eye"></i> </span>
-                                                    <span className = "date-meta">{moment(tutorial.createdAt).fromNow()}</span>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                    </div>
-
-
-
+                                    <p>Đề xuất cho bạn</p>
+                                    {/* <VideoList /> */}
                                 </div> 
                             </div>
                         </div>
@@ -702,4 +616,4 @@ const mapStateToProps = state => ({
     user :state.userReducer.user
 });
  
-export default connect(mapStateToProps)(Watch);
+export default connect(mapStateToProps)(Preview);

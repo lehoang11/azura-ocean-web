@@ -18,6 +18,7 @@ import EduHistory   from "../views/History"
 import EduFollow from "../views/EduFollow"
 import SettingLayout from "../views/Setting/SettingLayout"
 import OpenStreaming from '../views/Upload/live'
+import  Preview  from '../views/Watch/preview';
 
 
 const AppRouter = () => (  
@@ -43,6 +44,7 @@ const AppRouter = () => (
                 <Route path="/edu/:shortName" component={EduIndex} />
                 <Route path="/demo/:shortName" component={DemoIndex}/>
                 <Route path="/search" component={Search}/>  
+                <Route path="/preview/:shortName?_.:id?" component={Preview} /> 
             </MainLayout> 
         </Route>
 

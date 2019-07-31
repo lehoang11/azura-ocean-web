@@ -41,5 +41,9 @@ TutorialAPI.create = (params) => {
     return TutorialAPI.instance.post('/tutorial/create', params)
 }
 
+TutorialAPI.getTutorialUpdateById = (tutorialId) => {
+    return TutorialAPI.instance.get('/tutorial/getUpdateId/'+tutorialId)
+}
+
 export default TutorialAPI;
 

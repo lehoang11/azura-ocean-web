@@ -4,7 +4,8 @@ import axios from 'axios';
 
 const getInstance = () => {
     const instance = axios.create({
-        baseURL: 'http://localhost:5000',
+        //baseURL: 'http://localhost:5000',
+        baseURL: 'http://171.244.4.46:8000',
         timeout: 30000,
         crossdomain: true ,
         headers: {

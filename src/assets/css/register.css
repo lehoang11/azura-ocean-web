@@ -23,11 +23,13 @@
     outline: none; }
   
   .register-wrap {
+    width: 100%;
     min-height: 100vh;
+    background: url(../img/lgi.jpg) no-repeat;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #accffe;
+    /* background: #accffe; */
     color: #999;
  }
   

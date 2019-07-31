@@ -21,15 +21,20 @@ class Upload extends React.Component {
             uploadVideo : false,
             uploadImage : false,
             videoLink : '',
+            medialUrl : '',
             imageLink : '',
+            tutorial : null ,
             tutorialForm :{
+                id : null,
                 name :'',
                 avatar :'',
-                video : '',
+                medialUrl : '',
                 keyword : '',
-                status : '',
-                content :'',
-                
+                status : ''
+            },
+            materialForm : {
+                id : null,
+                content :''
             }
         };
 
@@ -49,6 +54,13 @@ class Upload extends React.Component {
 
     componentDidMount(){
         setTimeout(() => {
+            const query = new URLSearchParams(this.props.location.search);
+            const tid = query.get('tid')
+            console.log('tid :' + tid)//123
+            if(tid !=undefined || tid !=null){
+                this.getTutorialUpdateById(tid);
+            }
+
             const {user,eduData} = this.props;
             if(eduData.data === null || eduData.data === ''){
                 if(user.edu !== null){
@@ -62,10 +74,13 @@ class Upload extends React.Component {
         const target = event.target;
         const value = target.type === 'checkbox' ? target.checked : target.value;
         const name = target.name;
-        const { tutorialForm } = this.state;
+        const { tutorialForm , materialForm } = this.state;
         this.setState({
             tutorialForm: {
                     ...tutorialForm,
+                    [name]: value },
+            materialForm: {
+                    ...materialForm,
                     [name]: value }
         })
     }
@@ -111,7 +126,7 @@ class Upload extends React.Component {
                 this.setState({ uploadVideo : false })
                 if (res.data.code === 200 && res.data.status === true) {
                     this.setState({
-                        videoLink: res.data.url,
+                        medialUrl: res.data.url,
                     })
                     console.log(res);
                 }
@@ -125,39 +140,75 @@ class Upload extends React.Component {
         )
     }
 
+    getTutorialUpdateById = (tid) => {
+        return TutorialAPI.getTutorialUpdateById(tid).then(
+            (res) => {
+                if (res.data.code == 200) {
+                    if(res.data.data !==null){
+                        let tu = res.data.data.tutorial;
+                        let ma = res.data.data.material;
+                        this.setState({
+                            tutorialForm : {
+                                id : tu.id,
+                                name :tu.name,
+                                keyword : tu.keyword,
+                                status : tu.status
+                            },
+                            materialForm : {
+                                id :ma.id,
+                                content : ma.content
+                            },
+                            medialUrl : tu.medialUrl,
+                            imageLink :tu.avatar
+                        })
+
+                    }
+                }
+            },
+            (err) => {
+                console.log("error get data");
+                this.setState({
+                    errors :err,
+                })
+            }
+        )
+    }
+
     onClickTutorialPush =()=>{
         this.onLoaderFinished();
         this.onTutorialPush();
     }
 
     onTutorialPush(){
-        const { tutorialForm } = this.state;
+        const { tutorialForm, materialForm } = this.state;
         const { user, eduData } = this.props;
+        let id = tutorialForm.id;
         let name = _.trim(tutorialForm.name);
         let avatar = this.state.imageLink;
-        let video = this.state.videoLink;
+        let medialUrl = this.state.medialUrl;
         let eduId = eduData.data.id;
         let valError = true;
         
         valError = this.validationEmpty('Name', name) && valError;
         valError = this.validationEmpty('Avatar', avatar) && valError;
-        valError = this.validationEmpty('Video', video) && valError;
+        valError = this.validationEmpty('medialUrl', medialUrl) && valError;
 
         if(valError === false) {
             return;
         } 
         let tutorialModel = {
+            id : id,
             name :name,
             userId :user.id,
             eduId :eduId,
             avatar :avatar,
-            video : video,
+            medialUrl : medialUrl,
             keyword :tutorialForm.keyword,
             status :tutorialForm.status
         }
 
         let materialModel = {
-            content : tutorialForm.content
+            content : materialForm.content
         }
 
         let params = {
@@ -239,7 +290,7 @@ class Upload extends React.Component {
                         name="video" 
                         placeholder="Video link" 
                         disabled="" 
-                        defaultValue={this.state.videoLink} />
+                        defaultValue={this.state.medialUrl} disabled />
                     </div>
                 </div>
 
@@ -261,6 +312,7 @@ class Upload extends React.Component {
                         className="form-control" 
                         name="keyword" 
                         placeholder="Keyword"
+                        value={this.state.tutorialForm.keyword}
                         onChange={this.handleInputChange}
                         />
                     </div>
@@ -273,7 +325,7 @@ class Upload extends React.Component {
                         id="ckeditor" 
                         style={{width:'100%'}} rows="5" 
                         className="ckeditor"
-                        value={this.state.tutorialForm.content}
+                        value={this.state.materialForm.content}
                         onChange={this.handleInputChange}
                         >{this.state.tutorialForm.content}</textarea>
                     </div>
@@ -318,9 +370,9 @@ class Upload extends React.Component {
                                                 </div> 
                                             </div>
                                             <div className="show-video-upload">
-                                                {this.state.videoLink ?
+                                                {this.state.medialUrl ?
                                                    (<ReactPlayer
-                                                    url={this.state.videoLink}
+                                                    url={this.state.medialUrl}
                                                     className='react-player'
                                                     playing
                                                     controls
@@ -365,7 +417,7 @@ class Upload extends React.Component {
                         <div className="col-lg-3">
                             <div className="card">
                                 <div className="card-body" style={{minHeight:'800px'}}>
-                                    <div className="card-title">Pa Adonis Le</div>
+                                    <div className="card-title"> Thêm vào danh sách</div>
                                 </div> 
                             </div>
                         </div>
