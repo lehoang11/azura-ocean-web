@@ -14,5 +14,9 @@ export default {
         REGISTER_TITLE: "Đăng ký",
         REGISTER_BUTTON: "TÌM HIỂU NGAY",
 
+    },
+    EDU :{
+        EDU_CREATE_SUCCESS :'Edu create success',
+        EDU_CREATE_ERROR: 'Edu create fail'
     }
 }

@@ -1,16 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import userAction from '../../actions/userAction';
-import "../../assets/css/login.css"
-import "../../assets/css/fontawesome-all.css"
+import "../../assets/css/login.css";
+import {login,logout } from '../../actions/userAction'
 
 class Login extends React.Component {
     constructor(props) {
         super(props);
-
         // reset login status
-        this.props.dispatch(userAction.logout());
+        this.props.logoutAction();
 
         this.state = {
             email: '',
@@ -32,26 +30,22 @@ class Login extends React.Component {
 
         this.setState({ submitted: true });
         const { email, password } = this.state;
-        const { dispatch } = this.props;
         if (email && password) {
             let userLogin = {
                 email: email,
                 password: password
               }      
-            dispatch(userAction.login(userLogin));
+            this.props.loginAction(userLogin);
         }
     }
 
 
     render() {
-        const { loggingIn } = this.props;
         const { email, password, submitted } = this.state;
         return (
         <div id="login-wrap">
         <div>.</div>
             <h1>
-                <span>L</span>ogIn
-                <span>T</span>o
                 <span>A</span>zura
                 <span>O</span>cean
             </h1>
@@ -100,16 +94,11 @@ class Login extends React.Component {
                             </li>
                         </ul>
                     </div>
-                    { loggingIn }
                     <input type="submit" value="Log In" />
                 </form>
             </div>
 
-            <div className="footer">
-                <p>&copy; 2019 Azura Ocean |
-                    <Link to ="#">Hi</Link>
-                </p>
-            </div>
+            
         </div>
         );
     }
@@ -117,11 +106,12 @@ class Login extends React.Component {
 
 
 
-function mapStateToProps(state) {
-    const { loggingIn } = state.authentication;
-    return {
-        loggingIn
-    };
-}
-
-export default connect(mapStateToProps)(Login);
+const mapStateToProps = state => ({
+    user :state.userReducer.user
+});
+    
+const mapDispatchToProps = {
+    loginAction: login,
+    logoutAction :logout
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

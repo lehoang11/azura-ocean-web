@@ -1,122 +1,98 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import Header from "../../components/Header/Header"
-import Aside from "../../components/MenuBar/Aside"
-import "../../assets/css/video.css"
 import { Link } from 'react-router-dom';
-import videoImageDocCoCauBai from "../../assets/img/doc-co-cau-bai.jpg";
-const itemListVideo = [0,1,2,3,4,5];
+import "../../assets/css/video.css"
+import VideoList from "../../components/Video/VideosList"
+import TutorialAPI from '../../api/tutorialApi'
+import LoadingBar from 'react-top-loading-bar'
+
 
 class Home extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            tutorials: [],
+            isLoading: true,
+            errors: null,
+            loadingBarProgress: 0
+          };
+    }
+
+    complete = () => {
+        this.setState({ loadingBarProgress: 100 })
+    }
+    
+    onLoaderFinished = () => {
+        this.setState({ loadingBarProgress: 0 })
+    }
+
+
+    getTutorialList = () => {
+        return TutorialAPI.getTutorialList().then(
+            (res) => {
+                if (res.data.code == 200) {
+                    this.setState({
+                        tutorials: res.data.data.content,
+                        isLoading: false,
+                    })
+                    this.complete()
+                }
+            },
+            (err) => {
+                console.log("error get data");
+                this.setState({
+                    isLoading: true,
+                    errors :err,
+                })
+            }
+        )
+
+    }
+
+    componentWillMount(){
+    }
+
+    componentDidMount() {
+        this.getTutorialList();
+    }
+
+
 
     render() {
         const { user } = this.props;
+        const { isLoading, tutorials } = this.state;
         return (
-        <div id="wrapper">
-            <Header />
-            <Aside />
-            <div id="content">
-                <section className="row-item-video-container">
-                    <div className="header-section">
-                        <div className ="title-text"> Video Trực Tuyến
-                        </div>
-                    </div>
-                    <div className="video-body-card">
-                        <div className="video-body-card-inner">
-                        {
-                            itemListVideo.map((i) => {
-                                return ( 
-                                <div className = "video-item-thumbnail">
-                                    <div className = "thumbnail-inner">
-                                        <div className ="thumb-box">
-                                            <Link to="#">
-                                            <img src= {videoImageDocCoCauBai} alt="videoImageDocCoCauBai" />
-                                            </Link>
-                                        </div>
-                                        <div className = "video-time-play">
-                                            <span className = "time-play-status">45:20</span>
-                                        </div>
-                                    </div>
-                                    <div className = "video-details">
-                                        <div className ="video-details-inner">
-                                            <h3 className = "video-title">
-                                                <Link to="#" className ="title"> Phim kiếm hiệp hay nhất || Độc cô cầu bại</Link>
-                                            </h3>
-                                            <div className = "video-auth">
-                                                <Link to="#" className ="video-auth-text">chris le</Link>
-                                            </div>
-                                            <div className = "video-detail-meta">
-                                                <span className = "view-meta">3.5k luot xem </span>
-                                                <span className = "date-meta">2 thang truoc</span>
-                                            </div>
-                                        </div>
-                                    </div>
+        <div>
+            <LoadingBar
+            progress={this.state.loadingBarProgress}
+            height={3}
+            color="red"
+            onLoaderFinished={() => this.onLoaderFinished()}
+            />
+            <div className="page-wrapper">
+                <div className="page-content container-fluid">
+                    {/* content */}
+                    <section className="row">
+                        <div className="col-lg-12 col-md-12 col-sm-12 col-sx-12">
+                            <div className="section-title-box">
+                                <div className ="section-title text-uppercase"> Home
                                 </div>
-                                );
-                            })
-                        }
+                            </div>
                         </div>
-                    </div>       
-                </section>
-
-                {/* Tiếng Anh giao tiếp */}
-                <section className="row-item-video-container">
-                    <div className="header-section">
-                        <div className ="title-text"> Đề xuất cho bạn
+                        <div className="col-lg-12 col-md-12 col-sm-12 col-sx-12">
+                            {!isLoading ? <div><VideoList tutorials={tutorials} /></div> :<p>Loading...</p>}
                         </div>
-                    </div>
-                    <div className="video-body-card">
-                        <div className="video-body-card-inner">
-                        {
-                            itemListVideo.map((i) => {
-                                return ( 
-                                <div className = "video-item-thumbnail">
-                                    <div className = "thumbnail-inner">
-                                        <div className ="thumb-box">
-                                            <Link to="#">
-                                            <img src= {videoImageDocCoCauBai} alt="videoImageDocCoCauBai" /> 
-                                            </Link>
-                                        </div>
-                                        <div className = "video-time-play">
-                                            <span className = "time-play-status">45:20</span>
-                                        </div>
-                                    </div>
-                                    <div className = "video-details">
-                                        <div className ="video-details-inner">
-                                            <h3 className = "video-title">
-                                                <Link to="#" className ="title"> Phim kiếm hiệp hay nhất || Độc cô cầu bại</Link>
-                                            </h3>
-                                            <div className = "video-auth">
-                                                <Link to="#" className ="video-auth-text">chris le</Link>
-                                            </div>
-                                            <div className = "video-detail-meta">
-                                                <span className = "view-meta">3.5k luot xem </span>
-                                                <span className = "date-meta">2 thang truoc</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                );
-                            })
-                        }
-                        </div>
-                    </div>       
-                </section>
-
-                {/* end noi section */}
-            </div>{/* end noi content */}
+                    </section>
+                    {/* content */}
+                </div>
+            </div>
         </div>
-            
         );
     }
 }
 
-function mapStateToProps(state) {
-    const { authentication } = state;
-    const { user } = authentication;
-    return {
-        user
-    };
-}
+const mapStateToProps = state => ({
+    user :state.userReducer.user
+  });
 
 export default connect(mapStateToProps)(Home);

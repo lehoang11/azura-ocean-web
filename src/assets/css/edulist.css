@@ -1,0 +1,121 @@
+.list-edu-show {
+    width: 100%;
+    margin: 0 ;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    display: block;
+    float: left; 
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 24px;
+    margin-bottom: 24px;
+}
+
+.list-edu-show .edu-body-card {
+    width: 100%;
+    margin-top: 24px;
+    float: left;
+}
+
+.edu-body-card .edu-item-thumbnail {
+    width: 210px;
+    float: left;
+    padding-right: 4px;
+    display: block;
+    white-space: normal;
+    margin-bottom: 24px;
+}
+
+.edu-item-thumbnail.hidden-by-sidebar {
+    display: none;
+}
+.edu-body-card .edu-item-thumbnail .thumbnail-inner {
+    width: 100%;
+    height: 118px;
+    display: inline-block;
+    position: relative;
+}
+.edu-body-card .edu-item-thumbnail .thumbnail-inner .thumb-box {
+    position : absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    overflow: hidden;
+    display: block;
+}
+
+.edu-body-card .edu-item-thumbnail .thumbnail-inner .thumb-box img{
+    display: block;
+    position: absolute;
+    transform: translateY(-50%);
+    top: 50%;
+    left: 0;
+    width: 100%;
+}
+
+ .edu-item-thumbnail .edu-details {
+    width: 100%;
+    float: left;
+    position: relative;
+    cursor: pointer;
+    display: flex;
+    -ms-flex-direction: column;
+    -webkit-flex-direction: column;
+    flex-direction: column;
+}
+
+ .edu-item-thumbnail .edu-details {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    width: 100%;
+    float: left;
+    padding-right: 12px;
+}
+
+
+.edu-details .edu-title {
+    width: 100%;
+    float: left;
+    margin: 0;
+    color:#0a0a0a;
+    display: block;
+    font-size: 16px;
+    font-weight: 500;
+}
+.edu-details .edu-title .title {
+    display: -webkit-box;
+    max-height: 3.2rem;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: normal;
+    -webkit-line-clamp: 2;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.2rem;
+    color: #0a0a0a;
+    text-decoration: none;
+}
+
+.edu-details .edu-detail-meta {
+    width: 100%;
+    display: block;
+    line-height: 1.2rem;
+    max-height: 3.6rem;
+    font-size: 14px;
+    color: #333;
+    float: left;
+}
+.edu-details .edu-detail-meta .view-meta {
+    display: inline-block;
+    padding-right: 4px;
+}
+.edu-details .edu-detail-meta .date-meta {
+    display: inline-block;
+}
